@@ -8,11 +8,9 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Session, UseGuards, UseInterceptors } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
-import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
 
 @Controller('auth')
 @Serialize(UserDto)
-@UseInterceptors(CurrentUserInterceptor)
 export class UsersController {
     constructor(private usersService: UsersService, private authService: AuthService) { }
 
@@ -31,7 +29,6 @@ export class UsersController {
     @Get('/:id')
     public async findUser(@Param('id') id: string) {
         return this.usersService.findOne(parseInt(id));
-
     }
     @Get('/findAllUsers')
     public async findAllUsers(@Query('email') emailId: string) {
