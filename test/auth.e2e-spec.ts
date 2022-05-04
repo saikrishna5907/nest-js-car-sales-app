@@ -27,4 +27,21 @@ describe('AuthController (e2e)', () => {
                 expect(email).toEqual(emailId)
             })
     });
+
+    // it('signup as a new user then get the currently logged in user', async () => {
+    //     const emailId = 'test3@test.com'
+
+    //     const res = await request(app.getHttpServer())
+    //         .post('/auth/signUp')
+    //         .send({ email: emailId, password: 'test' })
+    //         .expect(201)
+    //     const cookie = res.get('Set-Cookie')
+
+    //     const { body } = await request(app.getHttpServer())
+    //         .get('/auth/getCurrentUser')
+    //         .set('Cookie', cookie)
+    //         .expect(200);
+
+    //     expect(body.email).toEqual(emailId)
+    // })
 });
