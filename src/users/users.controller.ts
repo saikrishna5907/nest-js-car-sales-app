@@ -1,4 +1,4 @@
-import { AuthGuard } from './../guards/auth.guards';
+import { AuthGuard } from '../guards/auth.guard';
 import { User } from './user.entity';
 import { UserDto } from './dtos/user.dto';
 import { Serialize } from './../interceptors/serialize.interceptor';
