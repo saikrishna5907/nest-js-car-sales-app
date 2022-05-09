@@ -3,18 +3,18 @@ POST http://localhost:3000/reports/create
 content-type: application/json
 
 {
-    "make": "toyota",
-    "model": "corolla",
-    "year": 2018,
-    "mileage": 12000,
-    "lng": 0,
-    "lat": 0,
-    "salePrice": 8000
+    "make": "benz",
+    "model": "4matic",
+    "year": 2019,
+    "mileage": 2500,
+    "lng": 46,
+    "lat": 47,
+    "salePrice": 20000
 }
 
 
 ### 19
-PATCH http://localhost:3000/reports/setApproval/1
+PATCH http://localhost:3000/reports/setApproval/27
 content-type: application/json
 
 {
@@ -23,9 +23,5 @@ content-type: application/json
 
 
 ### 19
-GET  http://localhost:3000/reports/getEstimationPrice?make=toyota&model=corolla&lng=0&lat=0&mileage=12000&year=2018
+GET  http://localhost:3000/reports/getEstimationPrice?make=benz&model=4matic&lng=45&lat=45&mileage=2000&year=2020
 content-type: application/json
-
-{
-     "approve": true
-}

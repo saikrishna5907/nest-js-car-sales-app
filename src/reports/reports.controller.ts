@@ -29,6 +29,6 @@ export class ReportsController {
 
     @Get('/getEstimationPrice')
     getEstimationPrice(@Query() query: GetEstimateDto) {
-
+        return this.reportsService.createEstimation(query);
     }
 }

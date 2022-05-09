@@ -7,19 +7,22 @@ import { User } from './users/user.entity';
 import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 const cookieSession = require('cookie-session');
+
+
+// TypeOrmModule.forRootAsync({
+//   inject: [ConfigService],
+//   useFactory: (config: ConfigService) => {
+//     return {
+//       type: 'sqlite',
+//       database: config.get<string>('DB_NAME'),
+//       entities: [User, Report],
+//       synchronize: true
+//     }
+//   }
+// }),
 @Module({
   imports: [
-    TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => {
-        return {
-          type: 'sqlite',
-          database: config.get<string>('DB_NAME'),
-          entities: [User, Report],
-          synchronize: true
-        }
-      }
-    }),
+    TypeOrmModule.forRoot(),
     UsersModule,
     ReportsModule,
     ConfigModule.forRoot({
@@ -36,12 +39,14 @@ const cookieSession = require('cookie-session');
   ],
 })
 export class AppModule {
+
+  constructor(private configService: ConfigService) { }
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(
         cookieSession({
-          keys: ['sometexttoencrytpcookieinfo']
+          keys: [this.configService.get('COOKIE_KEY')]
         }),
-      ).forRoutes('*') // * mean to load this middleware to every single request comes into this application
+      ).forRoutes('*') // * means to load this middleware to every single request comes into this application
   }
 }
